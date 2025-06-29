@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Kim Online Store</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>if (!localStorage.getItem("loggedInUser")) {
+  window.location.href = "login.html";
+}
+
+  <header>
+    <h1>Login</h1>
+  </header>
+  <main>
+    <form id="loginForm" class="form">
+      <label>Username: <input type="text" id="username" required></label><br><br>
+      <label>Password: <input type="password" id="password" required></label><br><br>
+      <button type="submit">Login</button>
+    </form>
+    <p id="loginError" style="color: red;"></p>
+  </main>
+  <script>
+    const users = [
+      { username: "admin", password: "admin123" },
+      { username: "kim", password: "store123" }
+    ];
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const uname = document.getElementById("username").value;
+      const pword = document.getElementById("password").value;
+      const validUser = users.find(user => user.username === uname && user.password === pword);
+      
+      if (validUser) {
+        localStorage.setItem("loggedInUser", uname);
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("loginError").textContent = "Invalid username or password.";
+      }
+    });
+  </script>
+</body>
+</html>

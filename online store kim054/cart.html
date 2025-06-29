@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <script>
+    // Redirect to login if not logged in
+    if (!localStorage.getItem("loggedInUser")) {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <header><h1>Your Cart</h1></header>
+  <main>
+    <div id="cartItems"></div>
+    <h3>Total: KSH <span id="cartTotal">0</span></h3>
+    <button onclick="checkout()">Checkout</button>
+    <button onclick="clearCart()">Clear Cart</button>
+  </main>
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
